@@ -1,9 +1,7 @@
 {
     "require": {
-        "twig/twig": "*"
-    },
-	"require": {
-        "illuminate/database": "*"
+        "smarty/smarty": "^3.1",
+        "illuminate/database": "~4.2",
+        "twig/twig": "^2.0"
     }
-
 }
