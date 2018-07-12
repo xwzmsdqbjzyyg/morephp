@@ -2,8 +2,19 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Document</title>
+    <title>{{ title }}</title>
 </head>
 <body>
+{{ keyword }}
+<div>{{ items }}</div>
+<div>
+    <ul>
+        {% for user in testArray %}
+        <li>{{ user }}</li>
+        {% else %}
+        <li><em>no user found</em></li>
+        {% endfor %}
+    </ul>
+</div>
 </body>
 </html>

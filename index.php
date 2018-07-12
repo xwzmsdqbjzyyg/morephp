@@ -25,6 +25,8 @@ define('APP_NAME', 'application');
 //morephp根路径
 define('MOREPHP_PATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
 
+
+
 //加载morephp框架的入口文件
 require(MOREPHP_PATH.'morephp'.DIRECTORY_SEPARATOR.'morephp.php');
 //加载common下的db.config文件

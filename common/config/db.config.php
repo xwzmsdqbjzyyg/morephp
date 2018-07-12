@@ -1,6 +1,6 @@
 <?php
 
-// 数据库配置
+// 数据库配置 todo 可以做成主从
 $config['db'] = [
     'host' => '127.0.0.1',
     'username' => 'root',
@@ -12,9 +12,3 @@ $config['db'] = [
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
 ];
-
-// 默认控制器和操作名
-$config['defaultController'] = 'Index';
-$config['defaultAction'] = 'index';
-
-return $config;

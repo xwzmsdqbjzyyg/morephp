@@ -20,6 +20,7 @@ defined('MOREPHP_PATH') or exit('Access Denied.');
 
 //MOREPHP框架版本信息
 define('MOREPHP_VERSION', '1.0');
+
 //MOREPHP应用目录
 define('APP_PATH', MOREPHP_PATH );
 define('CORE_PATH', MOREPHP_PATH . 'morephp' . DIRECTORY_SEPARATOR.'core');
@@ -37,7 +38,10 @@ define('HTTP_REFERER', isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'
 //类文件后缀
 define('EXT', '.class.php');
 
-
+// 载入composer的autoload文件
+require_once APP_PATH . 'vendor/autoload.php';
+//加载公共函数
+include APP_PATH.'common/function/function.php';
 class Morephp {
     protected $config = [];
 
@@ -60,7 +64,7 @@ class Morephp {
     public function route() {
         $controllerName = $this->config['defaultController'];
         $actionName = $this->config['defaultAction'];
-        $param = array();
+        $param = [];
 
         $url = $_SERVER['REQUEST_URI'];
         switch (URL_MODEL){
@@ -89,12 +93,13 @@ class Morephp {
         if (!method_exists($controller, $actionName)) {
             exit($actionName . '方法不存在');
         }
-        $dispatch = new $controller($moduleName,$controllerName, $actionName);
 
+        $dispatch = new $controller($moduleName,$controllerName,$actionName);
         // $dispatch保存控制器实例化后的对象，我们就可以调用它的方法，
         // 也可以像方法中传入参数，以下等同于：$dispatch->$actionName($param)
         call_user_func_array(array($dispatch, $actionName), $param);
     }
+
 
     /**
      * 是否显示错误信息
@@ -176,7 +181,7 @@ class Morephp {
         }
         include $file;
 
-        // 这里可以加入判断，如果名为$className的类、接口或者性状不存在，则在调试模式下抛出错误
+        // 这里可以加入判断，如果名为$className的类、接口不存在，则在调试模式下抛出错误
     }
 
     // 内核文件命名空间映射关系
@@ -185,8 +190,6 @@ class Morephp {
             'more\base\Controller' => CORE_PATH . '/base/Controller.php',
             'more\base\Model' => CORE_PATH . '/base/Model.php',
             'more\base\View' => CORE_PATH . '/base/View.php',
-            'more\db\Db' => CORE_PATH . '/db/Db.php',
-            'more\db\Sql' => CORE_PATH . '/db/Sql.php',
         ];
     }
 

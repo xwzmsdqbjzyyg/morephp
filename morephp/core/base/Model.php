@@ -2,22 +2,20 @@
 
 namespace more\base;
 
+use Illuminate\Container\Container;
+use Illuminate\Database\Capsule\Manager as DB;
 
-class Model extends Sql {
+class Model {
     protected $model;
 
     public function __construct() {
-        // 获取数据库表名
-        if (!$this->table) {
-
-            // 获取模型类名称
-            $this->model = get_class($this);
-
-            // 删除类名最后的 Model 字符
-            $this->model = substr($this->model, 0, -5);
-
-            // 数据库表名与类名一致
-            $this->table = strtolower($this->model);
-        }
+        $DB = new DB;
+        // 创建链接
+        $database = include  APP_PATH.'common/config/db.config.php';
+        $DB->addConnection($database);
+        // 设置全局静态可访问
+        $DB->setAsGlobal();
+        // 启动Eloquent
+        $DB->bootEloquent();
     }
 }
