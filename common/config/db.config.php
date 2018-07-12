@@ -6,9 +6,10 @@ $config['db'] = [
     'username' => 'root',
     'username' => 'root',
     'password' => '',
-    'dbname' => 'xiaoming',
+    'database' => 'xiaoming',
     'driver' => 'mysql',
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
 ];
+return $config;

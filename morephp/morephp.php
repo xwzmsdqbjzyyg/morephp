@@ -29,6 +29,7 @@ define('SYS_START_TIME', microtime(true));
 //系统时间
 define('SYS_TIME', time());
 
+
 //主机协议
 define('SERVER_PORT', isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://');
 //当前访问的主机名
@@ -38,7 +39,7 @@ define('HTTP_REFERER', isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'
 //类文件后缀
 define('EXT', '.class.php');
 
-// 载入composer的autoload文件
+//// 载入composer的autoload文件
 require_once APP_PATH . 'vendor/autoload.php';
 //加载公共函数
 include APP_PATH.'common/function/function.php';
@@ -49,8 +50,9 @@ class Morephp {
         $this->config = $config;
     }
 
+
     public function run() {
-        spl_autoload_register(array($this, 'loadClass'));
+        spl_autoload_register(array($this, 'loadClass'),true,true);
         $this->setReporting();
         $this->removeMagicQuotes();
         $this->unregisterGlobals();

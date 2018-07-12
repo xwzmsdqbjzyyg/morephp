@@ -7,6 +7,7 @@
 
 namespace more\base;
 
+//use  Symfony\Component\Translation;
 class View {
     protected $variables = array();
     protected $_controller;
@@ -32,7 +33,7 @@ class View {
 
         //判断视图文件是否存在
         if (is_file($html)) {
-//            var_dump(new \ComposerAutoloaderInit31964a127e8e40a86d41fd792a11b869());exit;
+//            \Twig_Autoloader::register();
             $loader = new \Twig_Loader_Filesystem($file);
             $twig = new \Twig_Environment($loader,[
                 'cache' =>  APP_PATH . 'cache/twig',
